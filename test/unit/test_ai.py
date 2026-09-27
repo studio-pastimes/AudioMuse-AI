@@ -169,9 +169,9 @@ class TestCleanPlaylistName:
         assert result == "RockClassics"
 
     def test_preserves_allowed_punctuation(self):
-        name = "Rock & Roll - 80's Hits! (Best)"
+        name = "Rock & Roll: 80's Hits! (Best)"
         result = clean_playlist_name(name)
-        assert result == "Rock & Roll - 80's Hits! (Best)"
+        assert result == "Rock & Roll: 80's Hits! (Best)"
 
     def test_removes_trailing_number_parentheses(self):
         name = "My Playlist (2)"

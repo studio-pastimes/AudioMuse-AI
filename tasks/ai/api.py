@@ -15,7 +15,8 @@ Unicode text hygiene that sibling modules rely on.
 
 Main Features:
 * validate_ai_config gates each provider (URL shape, key, model) before any call is made.
-* clean_playlist_name repairs mojibake with ftfy + NFKC and strips non-ASCII.
+* clean_playlist_name repairs mojibake with ftfy + NFKC and keeps a small,
+  media-server-safe ASCII punctuation set.
 * get_ai_playlist_title is the classic full-title naming path: the AI writes the whole title from the editable instructions plus a song sample, retrying with length feedback until the cleaned title fits 5-40 characters.
 * get_ai_playlist_name asks small local models for several grounded candidate
   concepts in a single call, then composes and validates the final title in
@@ -331,7 +332,7 @@ def clean_playlist_name(name: str) -> str:
     name = unicodedata.normalize("NFKC", name)
     name = re.sub(r"_automatic(\s*\(\d+\))?$", "", name, flags=re.IGNORECASE)
     name = name.replace("_", " ")
-    cleaned_name = re.sub(r"[^a-zA-Z0-9\s\-\&\'!\.\,\?\(\)\[\]]", "", name)
+    cleaned_name = re.sub(r"[^a-zA-Z0-9\s\-\&\'!\.\,\?\:\(\)\[\]]", "", name)
     cleaned_name = re.sub(r"\s\(\d+\)$", "", cleaned_name)
     cleaned_name = re.sub(r"\s+", " ", cleaned_name).strip()
     return cleaned_name

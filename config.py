@@ -616,7 +616,7 @@ AI_NAMING_PROMPT_MODE = os.environ.get("AI_NAMING_PROMPT_MODE", "concept").strip
 _AI_NAMING_TITLE_PROMPT_DEFAULT = (
     'You are an expert music collector and MUST give a title to this playlist.\n'
     'The title MUST represent the mood and the activity of when you are listening to the playlist.\n'
-    "The title MUST use ONLY standard ASCII (a-z, A-Z, 0-9, spaces, and - & ' ! . , ? ( ) [ ]).\n"
+    "The title MUST use ONLY standard ASCII (a-z, A-Z, 0-9, spaces, and - & ' ! . , ? : ( ) [ ]).\n"
     'The title MUST be within the range of 5 to 40 characters long.\n'
     'No special fonts or emojis.\n'
     "* BAD EXAMPLES: 'Ambient Electronic Space - Electric Soundscapes - Emotional Waves' (Too long/descriptive)\n"
